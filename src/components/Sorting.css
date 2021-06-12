@@ -1,0 +1,31 @@
+.array-section {
+  width: 80%;
+  margin: auto;
+}
+
+.array-content {
+  width: 85%;
+  margin: 100px auto;
+}
+
+.array-bar {
+  width: 2px;
+  background-color: turquoise;
+  display: inline-block;
+  margin: 1px;
+}
+
+@media screen and (max-width: 1450px) {
+  .array-section {
+    width: 100%;
+  }
+
+  .array-content {
+    width: 100%;
+  }
+
+  .array-bar {
+    width: 1px;
+    margin: 1px;
+  }
+}
