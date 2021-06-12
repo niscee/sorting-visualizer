@@ -9,8 +9,7 @@
 }
 
 .array-bar {
-  width: 2px;
-  background-color: turquoise;
+  width: 10px;
   display: inline-block;
   margin: 1px;
 }
