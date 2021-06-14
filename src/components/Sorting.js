@@ -3,15 +3,17 @@ import "./Sorting.css";
 import SortingList from "./SortingList";
 import Button from "./Button";
 
-
 const Sorting = () => {
   const [arr, setArr] = useState([]);
   const [arrswap, setArrswap] = useState([]);
-  const [completed, setCompleted] = useState([]);
+  const [bars, setBars] = useState(100);
+
+  // for completed bar.
+  // const [completed, setCompleted] = useState([]);
 
   useEffect(() => {
     resetArray();
-  }, []);
+  }, [bars]);
 
   // generate random value based on min and max.
   const getRndInteger = (min, max) => {
@@ -20,15 +22,20 @@ const Sorting = () => {
 
   //method for initiazling bars.
   const resetArray = () => {
+    setArr([]);
+
     const array = [];
-    for (let i = 0; i < 100; i++) {
+    for (let i = 0; i < bars; i++) {
       array.push(getRndInteger(5, 900));
     }
 
     setArr(array);
-    setArrswap([]);
-    setCompleted([]);
   };
+
+  // setbar.
+  const setBarFunc = (num) => {
+    setBars(num);
+  }
 
   //bubble sort.
   const bubbleSort = () => {
@@ -37,38 +44,46 @@ const Sorting = () => {
     for (let i = 0; i < l - 1; i++) {
       for (let j = 0; j < l - i - 1; j++) {
         setTimeout(() => {
-          const b = [];
-          b.push(j);
-          b.push(j + 1);
+          const currentBars = [];
+          currentBars.push(j);
+          currentBars.push(j + 1);
+          console.log(currentBars);
           if (temp[j] > temp[j + 1]) {
             let t = temp[j + 1];
             temp[j + 1] = temp[j];
             temp[j] = t;
           }
-          setArrswap([...b]);
+          setArrswap([...currentBars]);
 
           setArr([...temp]);
-        }, 20);
+        }, i * 10);
+        console.log(arrswap);
       }
-      setTimeout(() => {
-        let com = [];
-        for (let k = l; k >= l - i - 1; k--) {
-          com.push(k);
-        }
-        setCompleted([...com]);
-      }, 20);
+
+      // for sorted bar.
+      // setTimeout(() => {
+      //   let com = [];
+      //   for (let k = l; k >= l - i - 1; k--) {
+      //     com.push(k);
+      //   }
+      //   setCompleted([...com]);
+      // }, 1000);
     }
+
     setTimeout(() => {
-      setCompleted([]);
       setArrswap([]);
-    }, 300);
+    }, 4000);
   };
 
   return (
     <div className="array-section">
       <div className="array-content">
-        <SortingList arr={arr} arrswap={arrswap} completed={completed} />
-        <Button resetArray={resetArray} bubbleSort={bubbleSort} arr={arr} />
+        <div className="sort-sidebar">
+          <Button resetArray={resetArray} bubbleSort={bubbleSort} arr={arr} setBarFunc={setBarFunc} />
+        </div>
+        <div className="sort-content">
+          <SortingList arr={arr} arrswap={arrswap} />
+        </div>
       </div>
     </div>
   );

@@ -10,10 +10,8 @@ const SortingList = ({ arr, arrswap, completed }) => {
           style={{
             height: `${value}px`,
             backgroundColor: arrswap.includes(index)
-              ? "green"
-              : completed.includes(index)
-              ? "red"
-              : "pink",
+              ? "lime"
+              : "white"
           }}
         ></div>
       ))}
