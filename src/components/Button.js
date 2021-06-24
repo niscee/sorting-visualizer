@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Button = ({resetArray, bubbleSort, setBarFunc}) => {
+const Button = ({resetArray, bubbleSort, setBarFunc, insertSort}) => {
     const mybuttonStyle = {
         padding: "20px"
     }
@@ -9,8 +9,8 @@ const Button = ({resetArray, bubbleSort, setBarFunc}) => {
         <div id="button-section" style={mybuttonStyle}>
             <button onClick={resetArray}>Generate Array</button>
             <button onClick={bubbleSort}>Bubble Sort</button>
-            <button>Insertion Sort</button>
-            <button>Quick Sort</button>
+            <button onClick={insertSort}>Insertion Sort</button>
+
         </div>
         <div style={{width: "80%", margin: "auto", border: "1px solid white", padding: "20px"}}>
             <form>

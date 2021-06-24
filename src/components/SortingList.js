@@ -13,7 +13,7 @@ const SortingList = ({ arr, arrswap, completed }) => {
               ? "lime"
               : "white"
           }}
-        ></div>
+        >{value}</div>
       ))}
     </>
   );

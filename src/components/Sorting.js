@@ -6,7 +6,7 @@ import Button from "./Button";
 const Sorting = () => {
   const [arr, setArr] = useState([]);
   const [arrswap, setArrswap] = useState([]);
-  const [bars, setBars] = useState(100);
+  const [bars, setBars] = useState(25);
 
   // for completed bar.
   // const [completed, setCompleted] = useState([]);
@@ -35,7 +35,7 @@ const Sorting = () => {
   // setbar.
   const setBarFunc = (num) => {
     setBars(num);
-  }
+  };
 
   //bubble sort.
   const bubbleSort = () => {
@@ -47,39 +47,67 @@ const Sorting = () => {
           const currentBars = [];
           currentBars.push(j);
           currentBars.push(j + 1);
-          console.log(currentBars);
+
           if (temp[j] > temp[j + 1]) {
             let t = temp[j + 1];
             temp[j + 1] = temp[j];
             temp[j] = t;
           }
           setArrswap([...currentBars]);
-
           setArr([...temp]);
-        }, i * 10);
-        console.log(arrswap);
+        }, i * 100);
       }
-
-      // for sorted bar.
-      // setTimeout(() => {
-      //   let com = [];
-      //   for (let k = l; k >= l - i - 1; k--) {
-      //     com.push(k);
-      //   }
-      //   setCompleted([...com]);
-      // }, 1000);
     }
 
     setTimeout(() => {
       setArrswap([]);
-    }, 4000);
+    }, 3000);
+  };
+
+  //insertion sort.
+  const insertSortFunc = (j, temp, key, i) => {
+    setTimeout(() => {
+      const currentBars = [];
+      currentBars.push(j);
+      currentBars.push(j + 1);
+      if (j >= 0 && temp[j] > key) {
+        temp[j + 1] = temp[j];
+        j -= 1;
+        insertSortFunc(j, temp, key, i);
+      } else {
+        temp[j + 1] = key;
+        setArr([...temp]);
+      }
+      setArrswap([...currentBars]);
+      setArr([...temp]);
+    }, i * 30);
+    setTimeout(() => {
+      setArrswap([]);
+    }, 5000);
+  };
+
+  const insertSort = () => {
+    let l = arr.length;
+    let temp = [...arr];
+    let i, key, j;
+    for (i = 1; i < l; i++) {
+      key = temp[i];
+      j = i - 1;
+      insertSortFunc(j, temp, key, i);
+    }
   };
 
   return (
     <div className="array-section">
       <div className="array-content">
         <div className="sort-sidebar">
-          <Button resetArray={resetArray} bubbleSort={bubbleSort} arr={arr} setBarFunc={setBarFunc} />
+          <Button
+            resetArray={resetArray}
+            bubbleSort={bubbleSort}
+            arr={arr}
+            setBarFunc={setBarFunc}
+            insertSort={insertSort}
+          />
         </div>
         <div className="sort-content">
           <SortingList arr={arr} arrswap={arrswap} />
