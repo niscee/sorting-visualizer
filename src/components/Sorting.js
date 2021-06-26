@@ -80,7 +80,7 @@ const Sorting = () => {
       }
       setArrswap([...currentBars]);
       setArr([...temp]);
-    }, i * 30);
+    }, i * 40);
     setTimeout(() => {
       setArrswap([]);
     }, 5000);
